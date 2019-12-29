@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./bptracker/frontend/src/index.js --output ./bptracker/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development --watch ./bptracker/frontend/src/index.js --output ./bptracker/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./bptracker/frontend/src/index.js --output ./bptracker/frontend/static/frontend/main.js"
   },
   "keywords": [],
