@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
-import { getEntries } from "../../actions/entries";
+import { getEntries, deleteEntry } from "../../actions/entries";
 
 export class EntriesList extends Component {
     static propTypes = {
@@ -15,7 +15,7 @@ export class EntriesList extends Component {
 
     // https://stackoverflow.com/questions/58634980/format-created-at-date-in-reactjs
     // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
-    
+
     dateTimeFormatter = new Intl.DateTimeFormat('de-DE', {
         timeZone: 'UTC',
         year: 'numeric',
@@ -50,7 +50,7 @@ export class EntriesList extends Component {
                                     <td>{entry.pulse}</td>
                                     <td>{this.dateTimeFormatter.format(new Date(entry.created_at))}</td>
                                     <td>
-                                        <button className="button is-danger is-small">Delete</button>
+                                        <button onClick={this.props.deleteEntry.bind(this, entry.id)} className="button is-danger is-small">Delete</button>
                                     </td>
                                 </tr>
                             ))}
@@ -66,4 +66,7 @@ const mapStateToProps = state => ({
     entries: state.entries.entries
 });
 
-export default connect(mapStateToProps, { getEntries })(EntriesList);
+export default connect(
+    mapStateToProps,
+    { getEntries, deleteEntry }
+    )(EntriesList);

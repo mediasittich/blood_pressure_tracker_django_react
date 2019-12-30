@@ -1,7 +1,10 @@
 // All HTTP requests here
 import axios from "axios";
 
-import { GET_ENTRIES } from './types';
+import {
+    GET_ENTRIES,
+    DELETE_ENTRY
+} from './types';
 
 // GET ENTRIES
 export const getEntries = () => dispatch => {
@@ -14,4 +17,17 @@ export const getEntries = () => dispatch => {
             });
         })
         .catch(err => console.log(err));
-}
+};
+
+// DELETE ENTRY
+export const deleteEntry = (id) => dispatch => {
+    axios
+        .delete(`/api/entries/${id}/`)
+        .then(res => {
+            dispatch({
+                type: DELETE_ENTRY,
+                payload: id
+            });
+        })
+        .catch(err => console.log(err));
+};
