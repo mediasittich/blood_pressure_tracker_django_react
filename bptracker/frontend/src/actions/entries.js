@@ -3,7 +3,8 @@ import axios from "axios";
 
 import {
     GET_ENTRIES,
-    DELETE_ENTRY
+    DELETE_ENTRY,
+    ADD_ENTRY
 } from './types';
 
 // GET ENTRIES
@@ -27,6 +28,18 @@ export const deleteEntry = (id) => dispatch => {
             dispatch({
                 type: DELETE_ENTRY,
                 payload: id
+            });
+        })
+        .catch(err => console.log(err));
+};
+// ADD ENTRY
+export const addEntry = (entry) => dispatch => {
+    axios
+        .post(`/api/entries/`, entry)
+        .then(res => {
+            dispatch({
+                type: ADD_ENTRY,
+                payload: res.data
             });
         })
         .catch(err => console.log(err));

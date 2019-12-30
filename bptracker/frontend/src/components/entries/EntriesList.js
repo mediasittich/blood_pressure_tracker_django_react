@@ -6,7 +6,9 @@ import { getEntries, deleteEntry } from "../../actions/entries";
 
 export class EntriesList extends Component {
     static propTypes = {
-        entries: PropTypes.array.isRequired
+        entries: PropTypes.array.isRequired,
+        getEntries: PropTypes.func.isRequired,
+        deleteEntry: PropTypes.func.isRequired
     };
 
     componentDidMount() {

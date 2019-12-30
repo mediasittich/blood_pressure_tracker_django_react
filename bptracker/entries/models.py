@@ -5,4 +5,4 @@ class Entry(models.Model):
     systolic = models.IntegerField()
     diastolic = models.IntegerField()
     pulse = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=False)
+    created_at = models.DateTimeField(auto_now_add=True) # TODO: Change later for user input

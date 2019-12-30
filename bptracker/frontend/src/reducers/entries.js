@@ -1,6 +1,7 @@
 import {
     GET_ENTRIES,
-    DELETE_ENTRY
+    DELETE_ENTRY,
+    ADD_ENTRY
 } from '../actions/types';
 
 const initialState = {
@@ -18,6 +19,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 entries: state.entries.filter(entry => entry.id !== action.payload)
+            }
+        case ADD_ENTRY:
+            return {
+                ...state,
+                entries: [...state.entries, action.payload]
             }
         default:
             return state;
