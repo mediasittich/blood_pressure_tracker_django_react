@@ -94,7 +94,19 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getEntries\", function() { return getEntries; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteEntry\", function() { return deleteEntry; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addEntry\", function() { return addEntry; });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ \"./bptracker/frontend/src/actions/types.js\");\n// All HTTP requests here\n\n // GET ENTRIES\n\nvar getEntries = function getEntries() {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/entries/').then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"GET_ENTRIES\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; // DELETE ENTRY\n\nvar deleteEntry = function deleteEntry(id) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a[\"delete\"](\"/api/entries/\".concat(id, \"/\")).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"DELETE_ENTRY\"],\n        payload: id\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; // ADD ENTRY\n\nvar addEntry = function addEntry(entry) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(\"/api/entries/\", entry).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"ADD_ENTRY\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n};\n\n//# sourceURL=webpack:///./bptracker/frontend/src/actions/entries.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getEntries\", function() { return getEntries; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteEntry\", function() { return deleteEntry; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addEntry\", function() { return addEntry; });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ \"./bptracker/frontend/src/actions/types.js\");\n/* harmony import */ var _errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./errors */ \"./bptracker/frontend/src/actions/errors.js\");\n// All HTTP requests here\n\n\n // GET ENTRIES\n\nvar getEntries = function getEntries() {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/entries/').then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"GET_ENTRIES\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return dispatch(Object(_errors__WEBPACK_IMPORTED_MODULE_2__[\"returnErrors\"])(err.response.data, err.response.status));\n    });\n  };\n}; // DELETE ENTRY\n\nvar deleteEntry = function deleteEntry(id) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a[\"delete\"](\"/api/entries/\".concat(id, \"/\")).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"DELETE_ENTRY\"],\n        payload: id\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; // ADD ENTRY\n\nvar addEntry = function addEntry(entry) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(\"/api/entries/\", entry).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"ADD_ENTRY\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return dispatch(Object(_errors__WEBPACK_IMPORTED_MODULE_2__[\"returnErrors\"])(err.response.data, err.response.status));\n    });\n  };\n};\n\n//# sourceURL=webpack:///./bptracker/frontend/src/actions/entries.js?");
+
+/***/ }),
+
+/***/ "./bptracker/frontend/src/actions/errors.js":
+/*!**************************************************!*\
+  !*** ./bptracker/frontend/src/actions/errors.js ***!
+  \**************************************************/
+/*! exports provided: returnErrors */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"returnErrors\", function() { return returnErrors; });\n/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ \"./bptracker/frontend/src/actions/types.js\");\n // RETURN ERRORS\n\nvar returnErrors = function returnErrors(msg, status) {\n  return {\n    type: _types__WEBPACK_IMPORTED_MODULE_0__[\"GET_ERRORS\"],\n    payload: {\n      msg: msg,\n      status: status\n    }\n  };\n};\n\n//# sourceURL=webpack:///./bptracker/frontend/src/actions/errors.js?");
 
 /***/ }),
 
@@ -102,11 +114,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*************************************************!*\
   !*** ./bptracker/frontend/src/actions/types.js ***!
   \*************************************************/
-/*! exports provided: GET_ENTRIES, DELETE_ENTRY, ADD_ENTRY */
+/*! exports provided: GET_ENTRIES, DELETE_ENTRY, ADD_ENTRY, GET_ERRORS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GET_ENTRIES\", function() { return GET_ENTRIES; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DELETE_ENTRY\", function() { return DELETE_ENTRY; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ADD_ENTRY\", function() { return ADD_ENTRY; });\nvar GET_ENTRIES = 'GET_ENTRIES';\nvar DELETE_ENTRY = 'DELETE_ENTRY';\nvar ADD_ENTRY = 'ADD_ENTRY';\n\n//# sourceURL=webpack:///./bptracker/frontend/src/actions/types.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GET_ENTRIES\", function() { return GET_ENTRIES; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DELETE_ENTRY\", function() { return DELETE_ENTRY; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ADD_ENTRY\", function() { return ADD_ENTRY; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GET_ERRORS\", function() { return GET_ERRORS; });\nvar GET_ENTRIES = 'GET_ENTRIES';\nvar DELETE_ENTRY = 'DELETE_ENTRY';\nvar ADD_ENTRY = 'ADD_ENTRY';\nvar GET_ERRORS = 'GET_ERRORS';\n\n//# sourceURL=webpack:///./bptracker/frontend/src/actions/types.js?");
 
 /***/ }),
 
@@ -194,6 +206,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _act
 
 /***/ }),
 
+/***/ "./bptracker/frontend/src/reducers/errors.js":
+/*!***************************************************!*\
+  !*** ./bptracker/frontend/src/reducers/errors.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ \"./bptracker/frontend/src/actions/types.js\");\n\nvar initialState = {\n  msg: {},\n  status: null\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actions_types__WEBPACK_IMPORTED_MODULE_0__[\"GET_ERRORS\"]:\n      return {\n        msg: action.payload.msg,\n        status: action.payload.status\n      };\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./bptracker/frontend/src/reducers/errors.js?");
+
+/***/ }),
+
 /***/ "./bptracker/frontend/src/reducers/index.js":
 /*!**************************************************!*\
   !*** ./bptracker/frontend/src/reducers/index.js ***!
@@ -202,7 +226,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _act
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _entries__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entries */ \"./bptracker/frontend/src/reducers/entries.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__[\"combineReducers\"])({\n  entries: _entries__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n}));\n\n//# sourceURL=webpack:///./bptracker/frontend/src/reducers/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _entries__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entries */ \"./bptracker/frontend/src/reducers/entries.js\");\n/* harmony import */ var _errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./errors */ \"./bptracker/frontend/src/reducers/errors.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__[\"combineReducers\"])({\n  entries: _entries__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  errors: _errors__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n}));\n\n//# sourceURL=webpack:///./bptracker/frontend/src/reducers/index.js?");
 
 /***/ }),
 

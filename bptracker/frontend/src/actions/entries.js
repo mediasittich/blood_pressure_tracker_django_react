@@ -7,6 +7,8 @@ import {
     ADD_ENTRY
 } from './types';
 
+import { returnErrors } from "./errors";
+
 // GET ENTRIES
 export const getEntries = () => dispatch => {
     axios
@@ -17,7 +19,7 @@ export const getEntries = () => dispatch => {
                 payload: res.data
             });
         })
-        .catch(err => console.log(err));
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // DELETE ENTRY
@@ -42,5 +44,5 @@ export const addEntry = (entry) => dispatch => {
                 payload: res.data
             });
         })
-        .catch(err => console.log(err));
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
