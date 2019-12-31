@@ -3,7 +3,9 @@ import { returnErrors } from "./errors";
 import {
     USER_LOADING,
     USER_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL
 } from "./types";
 
 // CHECK TOKEN & LOAD USER
@@ -19,12 +21,12 @@ export const loadUser = () => (dispatch, getState) => {
         headers: {
             'Content-Type': 'application/json'
         }
-    }
+    };
 
     // If token, add to headers config
     if (token) {
         config.headers['Authorization'] = `Token ${token}`;
-    }
+    };
 
     axios
         .get('/api/auth/user', config)
@@ -38,6 +40,35 @@ export const loadUser = () => (dispatch, getState) => {
             dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: AUTH_ERROR
+            });
+        });
+};
+
+
+// LOGIN
+export const login = (username, password) => dispatch => {
+    // Headers
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    // Request Body
+    const body = JSON.stringify({ username, password });
+
+    axios
+        .post('/api/auth/login', body, config)
+        .then(res => {
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: LOGIN_FAIL
             });
         });
 }
