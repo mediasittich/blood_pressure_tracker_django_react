@@ -8,11 +8,12 @@ import {
 } from './types';
 
 import { returnErrors } from "./errors";
+import { tokenConfig } from './auth';
 
 // GET ENTRIES
-export const getEntries = () => dispatch => {
+export const getEntries = () => (dispatch, getState) => {
     axios
-        .get('/api/entries/')
+        .get('/api/entries/', tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: GET_ENTRIES,
@@ -23,9 +24,9 @@ export const getEntries = () => dispatch => {
 };
 
 // DELETE ENTRY
-export const deleteEntry = (id) => dispatch => {
+export const deleteEntry = (id) => (dispatch, getState) => {
     axios
-        .delete(`/api/entries/${id}/`)
+        .delete(`/api/entries/${id}/`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: DELETE_ENTRY,
@@ -35,9 +36,9 @@ export const deleteEntry = (id) => dispatch => {
         .catch(err => console.log(err));
 };
 // ADD ENTRY
-export const addEntry = (entry) => dispatch => {
+export const addEntry = (entry) => (dispatch, getState) => {
     axios
-        .post(`/api/entries/`, entry)
+        .post(`/api/entries/`, entry, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: ADD_ENTRY,

@@ -5,9 +5,9 @@ import { addEntry } from "../../actions/entries";
 
 export class Form extends Component {
     state = {
-        systolic: null,
-        diastolic: null,
-        pulse: null,
+        systolic: '',
+        diastolic: '',
+        pulse: '',
         // created_at: ''
     };
 
