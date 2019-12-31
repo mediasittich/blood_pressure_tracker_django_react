@@ -36,6 +36,9 @@ export class Register extends Component {
     };
 
     render() {
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/" />;
+        }
         const { username, email, password, password2 } = this.state;
         return (
             <div>
