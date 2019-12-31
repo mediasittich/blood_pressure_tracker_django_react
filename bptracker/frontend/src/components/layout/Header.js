@@ -14,7 +14,12 @@ export class Header extends Component {
         const { isAuthenticated, user } = this.props.auth;
 
         const authLinks = (
-            <div className="buttons">
+            <div>
+                <span>
+                    <strong>
+                        { user ? `Welcome back ${user.username}` : '' }
+                    </strong>
+                </span>
                 <button onClick={this.props.logout} className="button is-primary">
                     Logout
                 </button>
