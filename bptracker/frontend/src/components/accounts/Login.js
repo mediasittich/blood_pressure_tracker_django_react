@@ -19,7 +19,7 @@ export class Login extends Component {
         return (
             <div>
                 <h2>Register</h2>
-                <from onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <div className="field">
                         <label className="label">Username</label>
                         <div className="control">
@@ -46,13 +46,13 @@ export class Login extends Component {
                             />
                         </div>
                     </div>
-                    <div class="control">
+                    <div className="control">
                         <button className="button is-primary">Login</button>
                     </div>
                     <p>
                         Don't have an account? <Link to="/register">Register</Link>
                     </p>
-                </from>
+                </form>
             </div>
         )
     }
