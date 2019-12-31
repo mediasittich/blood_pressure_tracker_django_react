@@ -1,7 +1,8 @@
 import {
     GET_ENTRIES,
     DELETE_ENTRY,
-    ADD_ENTRY
+    ADD_ENTRY,
+    LOGOUT_SUCCESS
 } from '../actions/types';
 
 const initialState = {
@@ -24,6 +25,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 entries: [...state.entries, action.payload]
+            }
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                entries: []
             }
         default:
             return state;
