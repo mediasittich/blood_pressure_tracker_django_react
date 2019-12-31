@@ -9,6 +9,7 @@ import Header from './layout/Header';
 import Dashboard from './entries/Dashboard';
 import Register from "./accounts/Register";
 import Login from "./accounts/Login";
+import PrivateRoute from "./common/PrivateRoute";
 
 class App extends Component {
     render() {
@@ -19,7 +20,7 @@ class App extends Component {
                         <Header />
                         <div className="container">
                             <Switch>
-                                <Route exact path="/" component={Dashboard} />
+                                <PrivateRoute exact path="/" component={Dashboard} />
                                 <Route exact path="/register" component={Register} />
                                 <Route exact path="/login" component={Login} />
                             </Switch>
