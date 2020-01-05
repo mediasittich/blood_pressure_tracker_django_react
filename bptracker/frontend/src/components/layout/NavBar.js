@@ -32,7 +32,6 @@ export default function NavBar({ isAuthenticated, authLinks, guestLinks }) {
                     <Typography variant="h6" className={classes.title}>
                         BPTracker
                     </Typography>
-                    <Button color="inherit">{authLinks}</Button>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
