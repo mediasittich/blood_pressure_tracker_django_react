@@ -1,17 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import theme from '../theme';
 
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/auth";
 
-import Header from './layout/Header';
 import IntroPage from './layout/IntroPage';
 import Dashboard from './entries/Dashboard';
 import Register from "./accounts/Register";
 import Login from "./accounts/Login";
 import PrivateRoute from "./common/PrivateRoute";
+
 
 class App extends Component {
     componentDidMount() {
@@ -23,20 +27,23 @@ class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Fragment>
-                        <Header />
-                        <div className="container">
-                            <Switch>
-                                <Route exact path="/" component={IntroPage} />
-                                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                                <Route exact path="/register" component={Register} />
-                                <Route exact path="/login" component={Login} />
-                            </Switch>
-                        </div>
+                        <Switch>
+                            <Route exact path="/" component={IntroPage} />
+                            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                            <Route exact path="/register" component={Register} />
+                            <Route exact path="/login" component={Login} />
+                        </Switch>
                     </Fragment>
                 </Router>
             </Provider>
-        )
+        );
     }
-}
+};
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+    </ThemeProvider>,
+    document.getElementById('app')
+);

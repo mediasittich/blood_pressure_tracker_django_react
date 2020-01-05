@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Link as RouterLink , Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { login } from "../../actions/auth";
 
+import LoginForm from './LoginForm';
 export class Login extends Component {
     state = {
         username: '',
@@ -29,7 +30,8 @@ export class Login extends Component {
         const { username, password } = this.state;
         return (
             <div>
-                <h2>Register</h2>
+                <div>
+                <h2>Sign In</h2>
                 <form onSubmit={this.onSubmit}>
                     <div className="field">
                         <label className="label">Username</label>
@@ -61,9 +63,12 @@ export class Login extends Component {
                         <button className="button is-primary">Login</button>
                     </div>
                     <p>
-                        Don't have an account? <Link to="/register">Register</Link>
+                        Don't have an account? <RouterLink to="/register">Register</RouterLink>
                     </p>
                 </form>
+            </div>
+
+                <LoginForm />
             </div>
         )
     }

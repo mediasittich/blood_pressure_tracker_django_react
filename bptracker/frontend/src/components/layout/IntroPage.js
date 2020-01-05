@@ -1,11 +1,15 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
+import GuestLinks from './GuestLinks';
+import IntroHero from './IntroHero';
 
-const IntroPage = () => {
+export default function IntroPage() {
     return (
         <div>
-            hi!
+            <Container>
+                <GuestLinks />
+                <IntroHero />
+            </Container>
         </div>
     );
-}
-
-export default IntroPage;
+};

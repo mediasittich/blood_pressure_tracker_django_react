@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { logout } from "../../actions/auth";
 
+import Navbar from './NavBar';
+
 export class Header extends Component {
     static propTypes = {
         auth: PropTypes.object.isRequired,
@@ -31,7 +33,7 @@ export class Header extends Component {
                     <strong>Sign up</strong>
                 </Link>
                 <Link to="/login" className="button is-primary">
-                    Log in
+                    Sign In
                 </Link>
             </div>
         );

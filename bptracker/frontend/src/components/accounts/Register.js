@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { register } from "../../actions/auth";
 
+import RegisterForm from './RegisterForm';
+
 export class Register extends Component {
     state = {
         username: '',
@@ -42,7 +44,8 @@ export class Register extends Component {
         const { username, email, password, password2 } = this.state;
         return (
             <div>
-                <h2>Register</h2>
+            <div>
+                <h2>Sign Up</h2>
                 <form onSubmit={this.onSubmit}>
                     <div className="field">
                         <label className="label">Username</label>
@@ -103,6 +106,14 @@ export class Register extends Component {
                         Already have an account? <Link to="/login">Login</Link>
                     </p>
                 </form>
+            </div>
+
+            <RegisterForm
+                username={username}
+                email={email}
+                password={password}
+                password2={password2}
+            />
             </div>
         )
     }
